@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MidiAsset : ScriptableObject
-{
+public class MidiAsset : ScriptableObject {
 
     [SerializeField]
     private MidiFile _midiFile;
@@ -12,7 +11,7 @@ public class MidiAsset : ScriptableObject
         _midiFile = new MidiFile(path);
     }
 
-    public string fileName
+        public string fileName
     {
         get
         {
@@ -21,18 +20,18 @@ public class MidiAsset : ScriptableObject
     }
 
     public float pulseTime
-    {
-        get
         {
-            return (_midiFile.Time.Tempo / _midiFile.Time.Quarter) / 1000000f;
+        get
+            {
+                return (_midiFile.Time.Tempo / _midiFile.Time.Quarter) / 1000000f;
+            }
         }
-    }
     public float totalTime
     {
-        get
-        {
-            return _midiFile.TotalPulses * pulseTime;
-        }
+            get
+            {
+                return _midiFile.TotalPulses * pulseTime;
+            }
     }
 
     public int numerator
@@ -63,7 +62,15 @@ public class MidiAsset : ScriptableObject
     {
         get
         {
-            return (int)(6000000f / _midiFile.Time.Tempo);
+            return (int) (6000000f/ _midiFile.Time.Tempo); 
+        }
+    }
+
+    public MidiTrack[] tracks
+    {
+        get
+        {
+            return _midiFile.Tracks.ToArray();
         }
     }
 }
